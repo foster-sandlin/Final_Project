@@ -1,0 +1,45 @@
+div.gallery {
+    margin: 10px;
+    border: 1px solid darkgrey;
+    float: left;
+    width: 180px;
+    height: auto;
+    top: 100px;
+    position: relative;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+div.form-drop{
+  float: left;
+}
+div.main{
+  padding-top: 20px;
+  height:900px;
+  
+}
+nav{
+  height: 50px;
+
+}
+div.footer{
+  height: 100px;
+}
+
+div.side-nav{
+  height:150px
+  float:left;
+  position: relative;
+
+}

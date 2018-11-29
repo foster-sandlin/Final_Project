@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Crypto Predict</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap 3.3.7 CSS File -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<!-- Main Top Nav Bar -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="main.html">Home<span class="sr-only">(current)</span></a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Predictions</a>
+            </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+		 <ul class="navbar-nav mr-auto">
+		  <li class="nav-item">
+            <a class="nav-link" href="account.php">Login/Logout</a>
+         </ul>
+        </form>
+      </div>
+    </nav>
+
+  <div class="main">
+
+      <div class="gallery">
+  <a target="_blank" href="images/bitcoin_market.png">
+    <img src="images/bitcoin_market.png" alt="Bitcoin Market Info" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="images/desired_market.png">
+    <img src="images/desired_market.png" alt="Desired Market" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="images/daily_price_change.png">
+    <img src="images/daily_price_change.png" alt="Daily Price Change" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="images/mae.png">
+    <img src="images/mae.png" alt="MAE" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+    <div class="gallery">
+  <a target="_blank" href="images/mae_predicted.png">
+    <img src="images/mae_predicted.png" alt="MAE_Predicted" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+
+
+      <div class="gallery">
+  <a target="_blank" href="images/trainset_timepoint.png">
+    <img src="images/trainset_timepoint.png" alt="Trainset Timepoint" width="600" height="400">
+    </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+      <div class="gallery">
+  <a target="_blank" href="images/trivial_lag.png">
+    <img src="images/trivial_lag.png" alt="Trivial Lag" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+      <div class="gallery">
+  <a target="_blank" href="images/train_test.png">
+    <img src="images/train_test.png" alt="Train Test" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+      <div class="gallery">
+  <a target="_blank" href="images/testset_timepoint.png">
+    <img src="images/testset_timepoint.png" alt="Testset Timepoint" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+      <div class="side-nav">
+        <p>The select element defines a drop-down list:</p>
+<form action="cgi-bin/getData.py" method="post">
+  <select name="coin">
+    <option value="eth">Ethereum</option>
+    <option value="neo">NEO</option>
+  </select>
+  <br><br>
+  <input type="submit" name "submitdata" value="Submit Data" />
+</form>
+</div>
+</main>
+<div class ="footer">
+</div>
+  <!-- JavaScript Libraries -->
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+
+</body>
+</html>
