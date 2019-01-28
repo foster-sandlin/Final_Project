@@ -1,10 +1,11 @@
-#!C:\Users\Foster\Anaconda3\python
+#!/home/fostersandlin/anaconda3/bin/python3.6
 import pandas as pd
 import time
 import sys
-from PIL import Image
+import os
 import io
-import seaborn as sns
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import datetime
 import numpy as np
@@ -16,11 +17,13 @@ from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
 from mpl_toolkits.axes_grid1.inset_locator import mark_inset
 import cgi
 import cgitb
+import zipfile
 cgitb.enable()
+form = cgi.FieldStorage()
 
 
+ask = str(sys.argv[1])
 
-form = cg.FieldStorage()
 
 coinDict = {"btc": "https://coinmarketcap.com/currencies/bitcoin/historical-data/?start=20130428&end=", "eth":
             "https://coinmarketcap.com/currencies/ethereum/historical-data/?start=20130428&end=", "neo":
@@ -42,7 +45,7 @@ desired_market_info = desired_market_info.assign(Date=pd.to_datetime(desired_mar
 # convert to int
 desired_market_info['Volume'] = desired_market_info['Volume'].astype('int64')
 # look at the first few rows
-print(desired_market_info.head())
+#print(desired_market_info.head())
 
 # BITCOIN DATA
 
@@ -55,7 +58,7 @@ bitcoin_market_info.loc[bitcoin_market_info['Volume'] == "-", 'Volume'] = 0
 # convert to int
 bitcoin_market_info['Volume'] = bitcoin_market_info['Volume'].astype('int64')
 # look at the first few rows
-print(bitcoin_market_info.head())
+#print(bitcoin_market_info.head())
 
 # COLUMN IDENTIFY
 bitcoin_market_info.columns = [bitcoin_market_info.columns[0]] + ['bt_' + i for i in bitcoin_market_info.columns[1:]]
@@ -77,7 +80,7 @@ ax2.bar(bitcoin_market_info['Date'].astype(datetime.datetime).values, bitcoin_ma
 fig.tight_layout()
 # fig.figimage(bitcoin_im, 100, 120, zorder=3,alpha=.5)
 plt.savefig("C:/wamp64/www/crypto-predict_website/images/bitcoin_market.png")
-plt.show()
+#plt.show()
 
 
 
@@ -98,7 +101,7 @@ ax2.bar(desired_market_info['Date'].astype(datetime.datetime).values, desired_ma
 fig.tight_layout()
 # fig.figimage(cl_im, 300, 180, zorder=3, alpha=.6)
 plt.savefig("C:/wamp64/www/crypto-predict_website/images/desired_market.png")
-plt.show()
+#plt.show()
 
 
 # MERGED HEAD DATA
@@ -133,7 +136,7 @@ ax2.set_ylabel('Desired Coin Price ($)', fontsize=12)
 plt.tight_layout()
 ax1.legend(bbox_to_anchor=(0.03, 1), loc=2, borderaxespad=0., prop={'size': 14})
 plt.savefig("C:/wamp64/www/crypto-predict_website/images/train_test.png")
-plt.show()
+#plt.show()
 
  #trivial lag model: P_t = P_(t-1)
 fig, (ax1, ax2) = plt.subplots(2, 1)
@@ -160,7 +163,7 @@ ax2.plot(market_info[market_info['Date'] >= split_date]['Date'].astype(datetime.
 
 fig.tight_layout()
 plt.savefig("C:/wamp64/www/crypto-predict_website/images/trivial_lag.png")
-plt.show()
+#plt.show()
 
 fig, (ax1, ax2) = plt.subplots(1, 2)
 ax1.hist(market_info[market_info['Date'] < split_date]['bt_day_diff'].values, bins=100)
@@ -168,7 +171,7 @@ ax2.hist(market_info[market_info['Date'] < split_date]['cl_day_diff'].values, bi
 ax1.set_title('Bitcoin Daily Price Changes')
 ax2.set_title('Desired Coin Daily Price Changes')
 plt.savefig("C:/wamp64/www/crypto-predict_website/images/daily_price_change.png")
-plt.show()
+#plt.show()
 
 for coins in ['bt_', 'cl_']:
     kwargs = {coins+'close_off_high': lambda x: 2*(x[coins+'High']-x[coins+'Close**'])/(x[coins+'High']-x[coins+'Low'])-1,
@@ -248,7 +251,7 @@ else:
     ax1.set_ylabel('Model Loss',fontsize=12)
 ax1.set_xlabel('# Epochs',fontsize=12)
 plt.savefig("C:/wamp64/www/crypto-predict_website/images/mae.png")
-plt.show()
+#plt.show()
 
 
 fig, ax1 = plt.subplots(1, 1)
@@ -279,7 +282,7 @@ axins.set_ylim([10,60])
 axins.set_xticklabels('')
 mark_inset(ax1, axins, loc1=1, loc2=3, fc="none", ec="0.5")
 plt.savefig("C:/wamp64/www/crypto-predict_website/images/trainset_timepoint.png")
-plt.show()
+#plt.show()
 
 #TEST THIS
 #date2017 = [datetime.time(2017, i+1, 1) for i in range(12)]
@@ -302,7 +305,7 @@ ax1.set_title('Test Set: Single Timepoint Prediction', fontsize=13)
 ax1.set_ylabel('Desired Coin Price ($)', fontsize=12)
 ax1.legend(bbox_to_anchor=(0.1, 1), loc=2, borderaxespad=0., prop={'size': 14})
 plt.savefig("C:/wamp64/www/crypto-predict_website/images/mae_predicted.png")
-plt.show()
+#plt.show()
 
 #Predict for next 5 days
 
@@ -368,4 +371,16 @@ ax2.set_ylabel('Desired Coin Price ($)',fontsize=12)
 ax1.legend(bbox_to_anchor=(0.13, 1), loc=2, borderaxespad=0., prop={'size': 12})
 fig.tight_layout()
 plt.savefig("C:/wamp64/www/crypto-predict_website/images/testset_timepoint.png")
-plt.show()
+#plt.show()
+
+pictures_zip = zipfile.ZipFile('/var/www/html/crypto-predict_website/images//predictions.zip','w')
+pictures_zip.write('/var/www/html/crypto-predict_website/images/bitcoin_market.png',compress_type=zipfile.ZIP_DEFLATED)
+pictures_zip.write('/var/www/html/crypto-predict_website/images/daily_price_change.png',compress_type=zipfile.ZIP_DEFLATED)
+pictures_zip.write('/var/www/html/crypto-predict_website/images/desired_market.png',compress_type=zipfile.ZIP_DEFLATED)
+pictures_zip.write('/var/www/html/crypto-predict_website/images/mae.png',compress_type=zipfile.ZIP_DEFLATED)
+pictures_zip.write('/var/www/html/crypto-predict_website/images/mae_predicted.png',compress_type=zipfile.ZIP_DEFLATED)
+pictures_zip.write('/var/www/html/crypto-predict_website/images/testset_timepoint.png',compress_type=zipfile.ZIP_DEFLATED)
+pictures_zip.write('/var/www/html/crypto-predict_website/images/trainset_timepoint.png',compress_type=zipfile.ZIP_DEFLATED)
+pictures_zip.write('/var/www/html/crypto-predict_website/images/train_test.png',compress_type=zipfile.ZIP_DEFLATED)
+pictures_zip.write('/var/www/html/crypto-predict_website/images/trivial_lag.png',compress_type=zipfile.ZIP_DEFLATED)
+pictures_zip.close()
