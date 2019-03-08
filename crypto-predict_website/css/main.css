@@ -2,8 +2,8 @@ div.gallery {
     margin: 10px;
     border: 1px solid darkgrey;
     float: left;
-    width: 180px;
-    height: auto;
+    width: 200px;
+    height: 275px;
     top: 100px;
     position: relative;
 }
@@ -27,7 +27,7 @@ div.form-drop{
 div.main{
   padding-top: 20px;
   height:900px;
-  
+
 }
 nav{
   height: 50px;
@@ -37,9 +37,16 @@ div.footer{
   height: 100px;
 }
 
-div.side-nav{
-  height:150px
-  float:left;
+div.coin-nav{
+  top:100px;
+  left:40px;
+  width:40%;
   position: relative;
-
+}
+div.description{
+  top:60px;
+  width: 60%;
+  position: relative;
+  left:40px;
+  font-size: 16px;
 }
